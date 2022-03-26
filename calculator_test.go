@@ -7,27 +7,71 @@ import (
 
 func TestAdd(t *testing.T) {
 	t.Parallel()
-	var want float64 = 4
-	got := calculator.Add(2, 2)
-	if want != got {
-		t.Errorf("want %f, got %f", want, got)
+
+	type testCase struct {
+		name string
+		a, b float64
+		want float64
 	}
+
+	testCases := []testCase{
+		{name: "test case name", a: 2, b: 2, want: 4},
+		{name: "test case name", a: 1, b: 5, want: 6},
+		{name: "test case name", a: 5, b: 0, want: 5},
+		{name: "test case name", a: -5, b: 1, want: -4},
+	}
+
+	for _, tc := range testCases {
+		got := calculator.Add(tc.a, tc.b)
+		if tc.want != got {
+			t.Errorf("Add(%f, %f): want %f, got %f", tc.a, tc.b, tc.want, got)
+		}
+	}
+
 }
 
 func TestSubtract(t *testing.T) {
 	t.Parallel()
-	var want float64 = 2
-	got := calculator.Subtract(4, 2)
-	if want != got {
-		t.Errorf("want %f, got %f", want, got)
+	type testCase struct {
+		name string
+		a, b float64
+		want float64
+	}
+
+	testCases := []testCase{
+		{name: "test case name", a: 2, b: 2, want: 0},
+		{name: "test case name", a: 1, b: 5, want: -4},
+		{name: "test case name", a: 5, b: 0, want: 5},
+		{name: "test case name", a: -5, b: 1, want: -6},
+	}
+
+	for _, tc := range testCases {
+		got := calculator.Subtract(tc.a, tc.b)
+		if tc.want != got {
+			t.Errorf("Subtract(%f, %f): want %f, got %f", tc.a, tc.b, tc.want, got)
+		}
 	}
 }
 
 func TestMultiply(t *testing.T) {
 	t.Parallel()
-	var want float64 = 21
-	got := calculator.Multiply(7, 3)
-	if want != got {
-		t.Errorf("want %f, got %f", want, got)
+	type testCase struct {
+		name string
+		a, b float64
+		want float64
+	}
+
+	testCases := []testCase{
+		{name: "test case name", a: 2, b: 2, want: 4},
+		{name: "test case name", a: 1, b: 5, want: 5},
+		{name: "test case name", a: 5, b: 0, want: 0},
+		{name: "test case name", a: -5, b: 1, want: -5},
+	}
+
+	for _, tc := range testCases {
+		got := calculator.Multiply(tc.a, tc.b)
+		if tc.want != got {
+			t.Errorf("Multiply(%f, %f): want %f, got %f", tc.a, tc.b, tc.want, got)
+		}
 	}
 }
